@@ -1,11 +1,13 @@
 import FormInput from '../form-input/FormInput';
 import "./form.css"
 
-const Form = ({onChange}) => {
-  
+const Form = ({formField, onChange}) => {
+  const formFieldKeys = Object.keys(formField);
   return (
     <form>
-      <FormInput type="text" label="Full Name" name="fullName" onChangeHandler={onChange}/>
+      {formField && formFieldKeys.map(field => (
+        <FormInput key={field} type="text" label={field} name={field} onChangeHandler={onChange}/>
+      ))}
     </form>
   )
 }

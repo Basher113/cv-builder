@@ -6,6 +6,10 @@ import "./cv-container.css";
 
 const defaultFormField = {
   fullName: "",
+  email: "",
+  phone: "",
+  location: "",
+  summary: "",
 }
 
 const CvContainer = () => {
@@ -18,8 +22,13 @@ const CvContainer = () => {
 
   return (
     <div className="cv-container">
-      <Form onChange={changeHandler}/>
-      <CV fullName={formField.fullName}/>
+      <Form formField={formField} onChange={changeHandler}/>
+      <CV fullName={formField.fullName}
+        email={formField.email}
+        phone={formField.phone}
+        location={formField.location}
+        summary={formField.summary}
+      />
     </div>
   )
 }

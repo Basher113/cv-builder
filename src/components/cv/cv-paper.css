@@ -1,0 +1,14 @@
+.cv-paper-container {
+  padding: 1em;
+  box-shadow: var(--shadow);
+  
+}
+
+.full-name {
+  text-transform: capitalize;
+}
+
+.contacts {
+  display: flex;
+  gap: 10px;
+}
