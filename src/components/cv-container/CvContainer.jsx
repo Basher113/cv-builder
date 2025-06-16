@@ -15,10 +15,12 @@ const personalInfoFormField = {
 }
 
 const defaultExperienceFormField = {
+  id: crypto.randomUUID(),
   company: "",
   position: "",
   startDate: "",
   endDate: "",
+  jobDescription: "",
 }
 
 const tabs = [

@@ -1,43 +1,47 @@
-import "./cv-preview.css"
+import "./cv-preview.css";
+import {format} from "date-fns";
+
 const CvPreview = ({personalInfo, experiences}) => {
   const {fullName, email, phone, location, summary} = personalInfo;
   
   return (
     <div className="cv-paper-container">
-      <h2 className="full-name">{fullName}</h2>
-      <div className="contacts">
-        <div className="email">{email}</div>
-        <div className="phone"> {phone && " | "} {phone}</div>
-        <div className="location">{location && " | "} {location}</div>
+      <div className="personal-info">
+        <h2 className="full-name">{fullName}</h2>
+        <div className="contacts">
+          <div className="email">{email}</div>
+          <div className="phone"> {phone && " | "} {phone}</div>
+          <div className="location">{location && " | "} {location}</div>
+        </div>
+        <div className="summary">{summary}</div>
       </div>
-      <div className="summary">{summary}</div>
+      
+      <div className="experiences">
+        {experiences.map((experience, index) => {
+          const {company, position, startDate, endDate, jobDescription, id} = experience;
+          const formattedStartDate = startDate ? format(new Date(startDate), "MMM dd, yyyy") : "";
+          const formattedEndDate = endDate ? format(new Date(endDate), "MMM dd, yyyy") : "";
 
-      {experiences.length !== 0 && 
-        <div className="experiences">
-          {experiences.map((experience, index) => {
-            const {company, position, startDate, endDate, id} = experience;
-        
-            return (
-            <div key={id}> 
-              {index === 0 && (company || position || startDate || endDate) && <h3>Experience</h3>}
-              <div  className="experience-preview">
-                <div className="company-position">
-                  <div className="position">{position}{position && company && ", "}</div>
-                  <div className="company">{company}</div>
-                </div>
-                <div className="date-section">
-                  <div>{startDate}</div>
-                  {startDate && <span>-</span>}
-                  <div>{endDate}</div>
-                </div>
+          return (
+          <div key={id}> 
+            {index === 0 && (company || position || startDate || endDate) && <h3>Experience</h3>}
+            <div  className="experience-preview">
+              <div className="company-position">
+                <div className="position">{position}{position && company && ", "}</div>
+                <div className="company">{company}</div>
               </div>
+              <div className="date-section">
+                <div>{formattedStartDate}</div>
+                {startDate && <span>-</span>}
+                <div>{formattedEndDate}</div>
+              </div>
+              <div className="job-description">{jobDescription}</div>
             </div>
-            )
-          })}
-         </div>
-        }
-        
-     
+          </div>
+          )
+        })}
+        </div>
+
     </div>
   )
 }
