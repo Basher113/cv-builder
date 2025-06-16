@@ -1,12 +1,15 @@
 import FormInput from "../form-input/FormInput"
 const PersonalInfoForm = ({formField, onChange}) => {
-  const formFieldKeys = Object.keys(formField)
+  const {fullName, email, phone, location, summary} = formField;
   return (
     <form>
       <h2>Personal Info</h2>
-      {formFieldKeys.map(field => (
-        <FormInput key={field} type="text" label={field} name={field} onChangeHandler={onChange}/>
-      ))}
+      <FormInput type="text" label="Full Name" name="fullName" value={fullName} onChangeHandler={onChange}/>
+      <FormInput type="text" label="Emaile" name="email" value={email} onChangeHandler={onChange}/>
+      <FormInput type="text" label="Phone" name="phone" value={phone} onChangeHandler={onChange}/>
+      <FormInput type="text" label="location" name="location" value={location} onChangeHandler={onChange}/>
+      <label htmlFor="summary">Summary</label>
+      <textarea name="summary" id="summary" onChange={onChange} value={summary}></textarea>
       
     </form>
    

@@ -1,0 +1,9 @@
+.date-group {
+  display: flex;
+  gap: 1em;
+  width: 100%;
+}
+
+.date-group * {
+  flex: 1;
+}

@@ -1,10 +1,10 @@
 import "./form-input.css"
-const FormInput = ({label, type, name, onChangeHandler}) => {
+const FormInput = ({label, type, name, value, onChangeHandler}) => {
   
   return (
     <div className="group">
       <label>{label}</label>
-      <input type={type} name={name} onChange={onChangeHandler} />
+      <input type={type} name={name} value={value} onChange={onChangeHandler} />
     </div>
   )
 }
