@@ -12,3 +12,28 @@
   display: flex;
   gap: 10px;
 }
+
+.experiences {
+  margin-top: 3em;
+
+  h3 {
+    font-size: 1.3rem;
+    border-bottom: 1px solid black;
+  }
+}
+
+.experience-preview {
+  margin: 1em 0;
+}
+
+.company-position {
+  display: flex;
+  font-size: 1.1rem;
+  div {
+    font-weight: 700;
+  }
+}
+
+.date-section {
+  display: flex;
+}

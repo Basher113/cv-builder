@@ -34,19 +34,21 @@ const tabs = [
 
 const CvContainer = () => {
   const [personalInfo, setPersonalInfo] = useState(personalInfoFormField);
-  const [experienceFormField, setExperienceFormField] = useState(defaultExperienceFormField);
-  
+  const [experiences, setExperiences] = useState([defaultExperienceFormField]);
   const [activeTab, setActiveTab] = useState(tabs[0]);
-  const experiences = [experienceFormField];
+
   const updatePersonalInfoHandler = (e) => {
     const {name, value} = e.target;
     setPersonalInfo({...personalInfo, [name]: value});
   }
 
-  const updateExperienceInputHandler = (e) => {
+  const updateExperienceHandler = (experienceId, e) => {
     const {name, value} = e.target;
-    setExperienceFormField({...experienceFormField, [name]: value});
-    
+    setExperiences(prev => 
+      prev.map(experience => 
+        experience.id === experienceId ? {...experience, [name]: value} : experience
+      )
+    );
   }
   
   const activeTabHandler = (tabId) => {
@@ -54,7 +56,12 @@ const CvContainer = () => {
     setActiveTab(tabs[index]);
   }
 
-  console.log(experiences)
+  const addExperienceHandler = () => {
+    // Add new experience formField
+    const newExperience = {...defaultExperienceFormField, id: crypto.randomUUID()}
+    setExperiences(prev => [...prev, newExperience])
+  }
+
   return (
     <div className="cv-container">
       <div className="tabs">
@@ -64,7 +71,7 @@ const CvContainer = () => {
       </div>
       
       {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
-      {activeTab.text === "experience" && <ExperienceForm formField={experienceFormField} onChange={updateExperienceInputHandler}/>}
+      {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
       <CvPreview personalInfo={personalInfo} experiences={experiences}/>
     </div>
   )

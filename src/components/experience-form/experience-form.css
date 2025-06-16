@@ -7,3 +7,12 @@
 .date-group * {
   flex: 1;
 }
+
+.add-more-button {
+  background-color: rgb(19, 19, 19);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 0.7em;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import "./cv-preview.css"
 const CvPreview = ({personalInfo, experiences}) => {
   const {fullName, email, phone, location, summary} = personalInfo;
+  
   return (
     <div className="cv-paper-container">
       <h2 className="full-name">{fullName}</h2>
@@ -11,16 +12,32 @@ const CvPreview = ({personalInfo, experiences}) => {
       </div>
       <div className="summary">{summary}</div>
 
-      <div className="experiences">
-        <h3>Experiences</h3>
-        {experiences.map((experience) => (
-          <>
-            <div className="company">{experience.company}</div>
-            <div className="position">{experience.position}</div>
-          </>
-        ))}
+      {experiences.length !== 0 && 
+        <div className="experiences">
+          {experiences.map((experience, index) => {
+            const {company, position, startDate, endDate, id} = experience;
         
-      </div>
+            return (
+            <div key={id}> 
+              {index === 0 && (company || position || startDate || endDate) && <h3>Experience</h3>}
+              <div  className="experience-preview">
+                <div className="company-position">
+                  <div className="position">{position}{position && company && ", "}</div>
+                  <div className="company">{company}</div>
+                </div>
+                <div className="date-section">
+                  <div>{startDate}</div>
+                  {startDate && <span>-</span>}
+                  <div>{endDate}</div>
+                </div>
+              </div>
+            </div>
+            )
+          })}
+         </div>
+        }
+        
+     
     </div>
   )
 }
