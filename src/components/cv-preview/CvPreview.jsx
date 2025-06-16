@@ -1,7 +1,8 @@
+import { Fragment } from "react";
 import "./cv-preview.css";
 import {format} from "date-fns";
 
-const CvPreview = ({personalInfo, experiences, educations, projects}) => {
+const CvPreview = ({personalInfo, experiences, educations, projects, skills}) => {
   const {fullName, email, phone, location, summary} = personalInfo;
   
   return (
@@ -82,6 +83,20 @@ const CvPreview = ({personalInfo, experiences, educations, projects}) => {
                 <div className="project-description">{projectDescription}</div>
               </div>
             </div>
+            )
+
+          })}
+        </div>
+
+        <div className="skills">
+          {skills.map((currentSkill, index)=> {
+            const {id, skill} = currentSkill;
+         
+            return (
+            <Fragment key={id}> 
+              {index === 0 && skill && <h3>Skill</h3>}
+              <span className="skill">{skill}{skill && ", "}</span>  
+            </Fragment>
             )
 
           })}

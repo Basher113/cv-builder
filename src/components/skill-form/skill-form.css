@@ -1,0 +1,11 @@
+.skills-choice {
+  
+  button {
+    background-color: rgb(224, 224, 224);
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+}

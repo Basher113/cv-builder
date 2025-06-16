@@ -6,6 +6,7 @@ import "./cv-container.css";
 import ExperienceForm from "../experience-form/ExperienceForm";
 import EducationForm from "../education-form/EducationForm";
 import ProjectForm from "../project-form/ProjectForm";
+import SkillForm from "../skill-form/SkillForm";
 
 
 const personalInfoFormField = {
@@ -39,6 +40,16 @@ const defaultProjectFormField = {
   projectDescription: ""
 }
 
+const defaultSkillData = {
+  id: crypto.randomUUID(),
+  skill: ""
+}
+
+const skillsChoice = [
+  "HTML", "CSS", "Javascript", "React", "Node.js", "Python", "Java",
+  "SQL", "Git", "Vue.js", "PHP", "Dango", "Typescript",
+]
+
 const tabs = [
   {
     id: 1,
@@ -55,14 +66,21 @@ const tabs = [
   {
     id: 4,
     text: "project"
+  },
+  {
+    id: 5,
+    text: "skills"
   }
 ]
+
+
 
 const CvContainer = () => {
   const [personalInfo, setPersonalInfo] = useState(personalInfoFormField);
   const [experiences, setExperiences] = useState([defaultExperienceFormField]);
   const [educations, setEducations] = useState([defaultEducationFormField]);
-  const [projects, setProjects] = useState([defaultProjectFormField])
+  const [projects, setProjects] = useState([defaultProjectFormField]);
+  const [skills, setSkills] = useState([defaultSkillData]);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const updatePersonalInfoHandler = (e) => {
@@ -113,6 +131,25 @@ const CvContainer = () => {
     )
   }
 
+  const addSkillHandler = () => {
+    const newSkill = {...defaultSkillData, id: crypto.randomUUID()};
+    setSkills(prev => [...prev, newSkill])
+  }
+
+  const addSkillFromChoicesHandler = (skill) => {
+    const newSkill = {skill: skill, id: crypto.randomUUID()};
+    setSkills(prev => [...prev, newSkill])
+  }
+
+  const updateSkillHandler = (skillId, e) => {
+    const {name, value} = e.target;
+    setSkills(prev => 
+      prev.map(prevSkill => 
+        prevSkill.id === skillId ? {...prevSkill, [name]: value} : prevSkill
+      )
+    )
+  }
+
   const activeTabHandler = (tabId) => {
     const index = tabs.findIndex(tab => tab.id === tabId);
     setActiveTab(tabs[index]);
@@ -130,7 +167,8 @@ const CvContainer = () => {
       {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
       {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
       {activeTab.text === "project" && <ProjectForm projects={projects} addProjectHandler={addProjectHandler} onChange={updateProjectHandler}/>}
-      <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations} projects={projects}/>
+      {activeTab.text === "skills" && <SkillForm skills={skills} skillsChoice={skillsChoice} addSkillFromChoicesHandler={addSkillFromChoicesHandler} addSkillHandler={addSkillHandler} onChange={updateSkillHandler}/>}
+      <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations} projects={projects} skills={skills}/>
     </div>
   )
 }
