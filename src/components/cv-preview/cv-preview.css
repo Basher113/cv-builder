@@ -14,7 +14,8 @@
 }
 
 .experiences,
-.educations {
+.educations,
+.projects {
   margin-top: 3em;
 
   h3 {
@@ -27,7 +28,12 @@
   margin: 1em 0;
 }
 
-.company-position {
+.project-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.company-position{
   display: flex;
   font-size: 1.1rem;
   div {

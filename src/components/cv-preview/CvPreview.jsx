@@ -1,7 +1,7 @@
 import "./cv-preview.css";
 import {format} from "date-fns";
 
-const CvPreview = ({personalInfo, experiences, educations}) => {
+const CvPreview = ({personalInfo, experiences, educations, projects}) => {
   const {fullName, email, phone, location, summary} = personalInfo;
   
   return (
@@ -62,6 +62,24 @@ const CvPreview = ({personalInfo, experiences, educations}) => {
                   {startDate && <span>-</span>}
                   <div>{formattedEndDate}</div>
                 </div>
+              </div>
+            </div>
+            )
+
+          })}
+        </div>
+
+        <div className="projects">
+          {projects.map((project, index)=> {
+            const {id, projectName, projectDescription} = project;
+         
+            return (
+            <div key={id}> 
+              {index === 0 && (projectName || projectDescription) && <h3>Project</h3>}
+              <div className="project-preview">
+                <div className="project-name">{projectName}</div>
+                
+                <div className="project-description">{projectDescription}</div>
               </div>
             </div>
             )

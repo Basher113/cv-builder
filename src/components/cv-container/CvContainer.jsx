@@ -5,6 +5,7 @@ import CvPreview from "../cv-preview/CvPreview";
 import "./cv-container.css";
 import ExperienceForm from "../experience-form/ExperienceForm";
 import EducationForm from "../education-form/EducationForm";
+import ProjectForm from "../project-form/ProjectForm";
 
 
 const personalInfoFormField = {
@@ -32,6 +33,12 @@ const defaultEducationFormField = {
   endDate: "",
 }
 
+const defaultProjectFormField = {
+  id: crypto.randomUUID(),
+  projectName: "",
+  projectDescription: ""
+}
+
 const tabs = [
   {
     id: 1,
@@ -44,13 +51,18 @@ const tabs = [
   {
     id: 3,
     text: "education"
+  },
+  {
+    id: 4,
+    text: "project"
   }
 ]
 
 const CvContainer = () => {
   const [personalInfo, setPersonalInfo] = useState(personalInfoFormField);
   const [experiences, setExperiences] = useState([defaultExperienceFormField]);
-  const [educations, setEducations] = useState([defaultEducationFormField])
+  const [educations, setEducations] = useState([defaultEducationFormField]);
+  const [projects, setProjects] = useState([defaultProjectFormField])
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const updatePersonalInfoHandler = (e) => {
@@ -87,6 +99,20 @@ const CvContainer = () => {
     )
   }
 
+  const addProjectHandler = () => {
+    const newProject = {...defaultProjectFormField, id: crypto.randomUUID()};
+    setEducations(prev => [...prev, newProject])
+  }
+
+  const updateProjectHandler = (projectId, e) => {
+    const {name, value} = e.target;
+    setProjects(prev =>
+      prev.map(project => 
+        project.id === projectId ? {...project, [name]: value} : project
+      )
+    )
+  }
+
   const activeTabHandler = (tabId) => {
     const index = tabs.findIndex(tab => tab.id === tabId);
     setActiveTab(tabs[index]);
@@ -103,7 +129,8 @@ const CvContainer = () => {
       {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
       {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
       {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
-      <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations}/>
+      {activeTab.text === "project" && <ProjectForm projects={projects} addProjectHandler={addProjectHandler} onChange={updateProjectHandler}/>}
+      <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations} projects={projects}/>
     </div>
   )
 }
