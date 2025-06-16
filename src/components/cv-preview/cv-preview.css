@@ -1,7 +1,7 @@
 .cv-paper-container {
   padding: 1em;
   box-shadow: var(--shadow);
-  
+  min-height: 60vh;
 }
 
 .full-name {

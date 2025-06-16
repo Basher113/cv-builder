@@ -57,3 +57,16 @@ h1, h2, h3, h4, h5, h6 {
 :root {
   --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+form {
+  width: 80%;
+  box-shadow: var(--shadow);
+  padding: 1em;
+  
+
+  h3 {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+  }
+}
+

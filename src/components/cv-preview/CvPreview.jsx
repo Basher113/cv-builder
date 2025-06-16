@@ -1,5 +1,5 @@
-import "./cv-paper.css"
-const CV = ({fullName, email, phone, location, summary}) => {
+import "./cv-preview.css"
+const CvPreview = ({fullName, email, phone, location, summary}) => {
   return (
     <div className="cv-paper-container">
       <h2 className="full-name">{fullName}</h2>
@@ -13,4 +13,4 @@ const CV = ({fullName, email, phone, location, summary}) => {
   )
 }
 
-export default CV
+export default CvPreview

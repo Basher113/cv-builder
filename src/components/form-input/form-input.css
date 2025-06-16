@@ -1,3 +1,7 @@
+.group {
+  margin: 1em 0;
+}
+
 label {
   display: block;
   font-size: 1.2rem;
@@ -14,3 +18,4 @@ input {
 input:focus {
   outline: rgb(197, 197, 197);
 }
+

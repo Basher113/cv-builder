@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import Form from "../form/Form";
-import CV from "../cv/CV";
+import PersonalInfoForm from "../personal-info-form/PersonalInfoForm";
+import CvPreview from "../cv-preview/CvPreview";
 import "./cv-container.css";
 
-const defaultFormField = {
+const personalInfoFormField = { 
   fullName: "",
   email: "",
   phone: "",
@@ -13,7 +13,8 @@ const defaultFormField = {
 }
 
 const CvContainer = () => {
-  const [formField, setFormField] = useState(defaultFormField);
+  const [formField, setFormField] = useState(personalInfoFormField);
+
   const changeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -22,8 +23,8 @@ const CvContainer = () => {
 
   return (
     <div className="cv-container">
-      <Form formField={formField} onChange={changeHandler}/>
-      <CV fullName={formField.fullName}
+      <PersonalInfoForm formField={formField} onChange={changeHandler}/>
+      <CvPreview fullName={formField.fullName}
         email={formField.email}
         phone={formField.phone}
         location={formField.location}
