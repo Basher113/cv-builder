@@ -13,7 +13,8 @@
   gap: 10px;
 }
 
-.experiences {
+.experiences,
+.educations {
   margin-top: 3em;
 
   h3 {
@@ -32,6 +33,10 @@
   div {
     font-weight: 700;
   }
+}
+
+.school-degree {
+  display: flex;
 }
 
 .date-section {

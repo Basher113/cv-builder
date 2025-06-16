@@ -1,7 +1,7 @@
 import "./cv-preview.css";
 import {format} from "date-fns";
 
-const CvPreview = ({personalInfo, experiences}) => {
+const CvPreview = ({personalInfo, experiences, educations}) => {
   const {fullName, email, phone, location, summary} = personalInfo;
   
   return (
@@ -42,6 +42,32 @@ const CvPreview = ({personalInfo, experiences}) => {
         })}
         </div>
 
+        <div className="educations">
+          {educations.map((education, index)=> {
+            const {id, school, degree, startDate, endDate} = education;
+            const formattedStartDate = startDate ? format(new Date(startDate), "MMM dd, yyyy") : "";
+            const formattedEndDate = endDate ? format(new Date(endDate), "MMM dd, yyyy") : "";
+
+            return (
+            <div key={id}> 
+              {index === 0 && (school || degree || startDate || endDate) && <h3>Education</h3>}
+              <div  className="education-preview">
+                <div className="school-degree">
+                  <div className="degree">{degree}</div>
+                  {degree && school && <span>|</span>}
+                  <div className="school">{school}</div>
+                </div>
+                <div className="date-section">
+                  <div>{formattedStartDate}</div>
+                  {startDate && <span>-</span>}
+                  <div>{formattedEndDate}</div>
+                </div>
+              </div>
+            </div>
+            )
+
+          })}
+        </div>
     </div>
   )
 }

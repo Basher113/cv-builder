@@ -4,6 +4,7 @@ import PersonalInfoForm from "../personal-info-form/PersonalInfoForm";
 import CvPreview from "../cv-preview/CvPreview";
 import "./cv-container.css";
 import ExperienceForm from "../experience-form/ExperienceForm";
+import EducationForm from "../education-form/EducationForm";
 
 
 const personalInfoFormField = {
@@ -23,6 +24,14 @@ const defaultExperienceFormField = {
   jobDescription: "",
 }
 
+const defaultEducationFormField = {
+  id: crypto.randomUUID(),
+  school: "",
+  degree: "",
+  startDate: "",
+  endDate: "",
+}
+
 const tabs = [
   {
     id: 1,
@@ -31,12 +40,17 @@ const tabs = [
   {
     id: 2,
     text: "experience"
+  },
+  {
+    id: 3,
+    text: "education"
   }
 ]
 
 const CvContainer = () => {
   const [personalInfo, setPersonalInfo] = useState(personalInfoFormField);
   const [experiences, setExperiences] = useState([defaultExperienceFormField]);
+  const [educations, setEducations] = useState([defaultEducationFormField])
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const updatePersonalInfoHandler = (e) => {
@@ -52,16 +66,30 @@ const CvContainer = () => {
       )
     );
   }
-  
-  const activeTabHandler = (tabId) => {
-    const index = tabs.findIndex(tab => tab.id === tabId);
-    setActiveTab(tabs[index]);
-  }
 
   const addExperienceHandler = () => {
     // Add new experience formField
     const newExperience = {...defaultExperienceFormField, id: crypto.randomUUID()}
     setExperiences(prev => [...prev, newExperience])
+  }
+
+  const addEducationHandler = () => {
+    const newEducation = {...defaultEducationFormField, id: crypto.randomUUID()};
+    setEducations(prev => [...prev, newEducation])
+  }
+
+  const updateEducationHandler = (educationId, e) => {
+    const {name, value} = e.target;
+    setEducations(prev =>
+      prev.map(educ => 
+        educ.id === educationId ? {...educ, [name]: value} : educ
+      )
+    )
+  }
+
+  const activeTabHandler = (tabId) => {
+    const index = tabs.findIndex(tab => tab.id === tabId);
+    setActiveTab(tabs[index]);
   }
 
   return (
@@ -74,7 +102,8 @@ const CvContainer = () => {
       
       {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
       {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
-      <CvPreview personalInfo={personalInfo} experiences={experiences}/>
+      {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
+      <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations}/>
     </div>
   )
 }
