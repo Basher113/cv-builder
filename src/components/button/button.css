@@ -25,7 +25,8 @@ button {
   color: black;
 }
 
-.secondary:hover {
+.secondary:hover,
+.active {
   background-color: rgb(19, 19, 19);
   color: white;
   border: 1px solid white;
@@ -44,3 +45,5 @@ button {
 .skill-choice-button:hover {
   background-color: rgba(224, 224, 224, 0.726);
 }
+
+

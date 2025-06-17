@@ -161,7 +161,7 @@ const CvContainer = () => {
       <div className="form-container">
         <div className="tabs">
           {tabs.map(tab => (
-            <Button className="secondary" key={tab.id} onClick={() => activeTabHandler(tab.id)}>{tab.text}</Button>
+            <Button className={`secondary ${tab.id === activeTab.id ? "active" : ""}`} key={tab.id} onClick={() => activeTabHandler(tab.id)}>{tab.text}</Button>
           ))}
         </div>
         {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
