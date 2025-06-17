@@ -120,7 +120,7 @@ const CvContainer = () => {
 
   const addProjectHandler = () => {
     const newProject = {...defaultProjectFormField, id: crypto.randomUUID()};
-    setEducations(prev => [...prev, newProject])
+    setProjects(prev => [...prev, newProject])
   }
 
   const updateProjectHandler = (projectId, e) => {
