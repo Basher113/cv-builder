@@ -1,4 +1,5 @@
 import FormInput from "../form-input/FormInput";
+import Button from "../button/Button";
 const EducationForm = ({educations, addEducationHandler, onChange}) => {
   return (
     <form>
@@ -17,7 +18,7 @@ const EducationForm = ({educations, addEducationHandler, onChange}) => {
         </div>)
       })}
       
-      <button type="button" onClick={addEducationHandler} className="add-more-button">+ Add Education</button>
+      <Button type="button" onClick={addEducationHandler} className="primary">+ Add Education</Button>
     </form>
   )
 }

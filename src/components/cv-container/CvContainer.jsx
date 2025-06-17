@@ -2,12 +2,13 @@ import { useState } from "react";
 
 import PersonalInfoForm from "../personal-info-form/PersonalInfoForm";
 import CvPreview from "../cv-preview/CvPreview";
-import "./cv-container.css";
+
 import ExperienceForm from "../experience-form/ExperienceForm";
 import EducationForm from "../education-form/EducationForm";
 import ProjectForm from "../project-form/ProjectForm";
 import SkillForm from "../skill-form/SkillForm";
-
+import "./cv-container.css";
+import Button from "../button/Button";
 
 const personalInfoFormField = {
   fullName: "",
@@ -157,17 +158,20 @@ const CvContainer = () => {
 
   return (
     <div className="cv-container">
-      <div className="tabs">
-        {tabs.map(tab => (
-          <button className={tab.id === activeTab.id ? "active" : ""} key={tab.id} onClick={() => activeTabHandler(tab.id)}>{tab.text}</button>
-        ))}
+      <div className="form-container">
+        <div className="tabs">
+          {tabs.map(tab => (
+            <Button className="secondary" key={tab.id} onClick={() => activeTabHandler(tab.id)}>{tab.text}</Button>
+          ))}
+        </div>
+        {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
+        {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
+        {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
+        {activeTab.text === "project" && <ProjectForm projects={projects} addProjectHandler={addProjectHandler} onChange={updateProjectHandler}/>}
+        {activeTab.text === "skills" && <SkillForm skills={skills} skillsChoice={skillsChoice} addSkillFromChoicesHandler={addSkillFromChoicesHandler} addSkillHandler={addSkillHandler} onChange={updateSkillHandler}/>}
+        
       </div>
       
-      {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
-      {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
-      {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
-      {activeTab.text === "project" && <ProjectForm projects={projects} addProjectHandler={addProjectHandler} onChange={updateProjectHandler}/>}
-      {activeTab.text === "skills" && <SkillForm skills={skills} skillsChoice={skillsChoice} addSkillFromChoicesHandler={addSkillFromChoicesHandler} addSkillHandler={addSkillHandler} onChange={updateSkillHandler}/>}
       <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations} projects={projects} skills={skills}/>
     </div>
   )

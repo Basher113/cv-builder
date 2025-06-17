@@ -1,12 +1,12 @@
+import Button from "../button/Button";
 import FormInput from "../form-input/FormInput";
-import "./skill-form.css"
 const SkillForm = ({skills, skillsChoice, addSkillFromChoicesHandler, addSkillHandler, onChange}) => {
   return (
     <form>
       <h2>Skill</h2>
       <div className="skills-choice">
         {skillsChoice.map(choice => (
-          <button type="button" onClick={() => addSkillFromChoicesHandler(choice)} key={choice}>{choice}</button>
+          <Button className="skill-choice-button" type="button" onClick={() => addSkillFromChoicesHandler(choice)} key={choice}>{choice}</Button>
         ))}
       </div>
       {skills.map(prevSkill => {
@@ -19,7 +19,7 @@ const SkillForm = ({skills, skillsChoice, addSkillFromChoicesHandler, addSkillHa
         )
       })}
       
-      <button type="button" onClick={addSkillHandler} className="add-more-button">+ Add more skill</button>
+      <Button type="button" onClick={addSkillHandler} className="primary">+ Add more skill</Button>
     </form>
   )
 }

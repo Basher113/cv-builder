@@ -1,3 +1,4 @@
+import Button from "../button/Button";
 import FormInput from "../form-input/FormInput"
 import "./experience-form.css"
 const ExperienceForm = ({experiences, onChange, addExperienceHandler}) => {
@@ -21,7 +22,7 @@ const ExperienceForm = ({experiences, onChange, addExperienceHandler}) => {
         </div>)
       })}
       
-      <button type="button" onClick={addExperienceHandler} className="add-more-button">Add More</button>
+      <Button type="button" onClick={addExperienceHandler} className="primary" >+ Add Experience</Button>
     </form>
   )
 }

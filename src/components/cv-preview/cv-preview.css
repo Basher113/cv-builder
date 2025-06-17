@@ -1,36 +1,25 @@
 .cv-paper-container {
   padding: 1em;
   box-shadow: var(--shadow);
-  min-height: 60vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+
+  h3 {
+    border-bottom: 1px solid black;
+    font-size: 1.2rem;
+  }
 }
 
 .full-name {
   text-transform: capitalize;
+  font-size: 2rem;
 }
 
 .contacts {
   display: flex;
   gap: 10px;
-}
-
-.experiences,
-.educations,
-.projects {
-  margin-top: 3em;
-
-  h3 {
-    font-size: 1.3rem;
-    border-bottom: 1px solid black;
-  }
-}
-
-.experience-preview {
-  margin: 1em 0;
-}
-
-.project-name {
-  font-weight: 700;
-  font-size: 1.1rem;
 }
 
 .company-position{
@@ -41,6 +30,11 @@
   }
 }
 
+.project-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
 .school-degree {
   display: flex;
 }
@@ -48,8 +42,5 @@
 .date-section {
   display: flex;
   font-size: 0.9rem;
-}
-
-.skill {
-  display: inline;
+  font-style: italic;
 }

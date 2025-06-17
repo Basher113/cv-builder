@@ -41,9 +41,9 @@ const CvPreview = ({personalInfo, experiences, educations, projects, skills}) =>
           </div>
           )
         })}
-        </div>
+      </div>
 
-        <div className="educations">
+      <div className="educations">
           {educations.map((education, index)=> {
             const {id, school, degree, startDate, endDate} = education;
             const formattedStartDate = startDate ? format(new Date(startDate), "MMM dd, yyyy") : "";
@@ -68,39 +68,39 @@ const CvPreview = ({personalInfo, experiences, educations, projects, skills}) =>
             )
 
           })}
-        </div>
+      </div>
 
-        <div className="projects">
-          {projects.map((project, index)=> {
-            const {id, projectName, projectDescription} = project;
-         
-            return (
-            <div key={id}> 
-              {index === 0 && (projectName || projectDescription) && <h3>Project</h3>}
-              <div className="project-preview">
-                <div className="project-name">{projectName}</div>
-                
-                <div className="project-description">{projectDescription}</div>
-              </div>
+      <div className="projects">
+        {projects.map((project, index)=> {
+          const {id, projectName, projectDescription} = project;
+        
+          return (
+          <div key={id}> 
+            {index === 0 && (projectName || projectDescription) && <h3>Project</h3>}
+            <div className="project-preview">
+              <div className="project-name">{projectName}</div>
+              
+              <div className="project-description">{projectDescription}</div>
             </div>
-            )
+          </div>
+          )
 
-          })}
-        </div>
+        })}
+      </div>
 
-        <div className="skills">
-          {skills.map((currentSkill, index)=> {
-            const {id, skill} = currentSkill;
-         
-            return (
-            <Fragment key={id}> 
-              {index === 0 && skill && <h3>Skill</h3>}
-              <span className="skill">{skill}{skill && ", "}</span>  
-            </Fragment>
-            )
+      <div className="skills">
+        {skills.map((currentSkill, index)=> {
+          const {id, skill} = currentSkill;
+        
+          return (
+          <Fragment key={id}> 
+            {index === 0 && skill && <h3>Skill</h3>}
+            <span className="skill">{skill}{skill && ", "}</span>  
+          </Fragment>
+          )
 
-          })}
-        </div>
+        })}
+      </div>
     </div>
   )
 }

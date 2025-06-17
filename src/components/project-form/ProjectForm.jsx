@@ -1,3 +1,4 @@
+import Button from "../button/Button";
 import FormInput from "../form-input/FormInput"
 const ProjectForm = ({projects, addProjectHandler, onChange}) => {
   return (
@@ -16,7 +17,7 @@ const ProjectForm = ({projects, addProjectHandler, onChange}) => {
         )
       })}
       
-      <button type="button" onClick={addProjectHandler} className="add-more-button">+ Add Project</button>
+      <Button type="button" onClick={addProjectHandler} className="primary">+ Add Project</Button>
     </form>
   )
 }
