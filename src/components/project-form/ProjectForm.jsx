@@ -2,7 +2,7 @@ import Button from "../button/Button";
 import FormInput from "../form-input/FormInput"
 const ProjectForm = ({projects, addProjectHandler, onChange}) => {
   return (
-    <form>
+    <>
       <h2>Project</h2>
       {projects.map(project => {
         const {id, projectName, projectDescription} = project;
@@ -18,7 +18,7 @@ const ProjectForm = ({projects, addProjectHandler, onChange}) => {
       })}
       
       <Button type="button" onClick={addProjectHandler} className="primary">+ Add Project</Button>
-    </form>
+    </>
   )
 }
 

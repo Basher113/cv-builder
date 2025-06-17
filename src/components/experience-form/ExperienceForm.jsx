@@ -4,7 +4,7 @@ import "./experience-form.css"
 const ExperienceForm = ({experiences, onChange, addExperienceHandler}) => {
 
   return (
-    <form className="experience-form">
+    <>
       <h2>Experience</h2>
       {experiences.map(experience => {
         const {id, company, position, startDate, endDate, jobDescription} = experience;
@@ -23,7 +23,7 @@ const ExperienceForm = ({experiences, onChange, addExperienceHandler}) => {
       })}
       
       <Button type="button" onClick={addExperienceHandler} className="primary" >+ Add Experience</Button>
-    </form>
+    </>
   )
 }
 

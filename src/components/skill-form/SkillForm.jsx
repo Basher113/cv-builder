@@ -2,7 +2,7 @@ import Button from "../button/Button";
 import FormInput from "../form-input/FormInput";
 const SkillForm = ({skills, skillsChoice, addSkillFromChoicesHandler, addSkillHandler, onChange}) => {
   return (
-    <form>
+    <>
       <h2>Skill</h2>
       <div className="skills-choice">
         {skillsChoice.map(choice => (
@@ -20,7 +20,7 @@ const SkillForm = ({skills, skillsChoice, addSkillFromChoicesHandler, addSkillHa
       })}
       
       <Button type="button" onClick={addSkillHandler} className="primary">+ Add more skill</Button>
-    </form>
+    </>
   )
 }
 

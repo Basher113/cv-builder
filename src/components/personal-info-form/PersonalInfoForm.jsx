@@ -2,7 +2,7 @@ import FormInput from "../form-input/FormInput"
 const PersonalInfoForm = ({formField, onChange}) => {
   const {fullName, email, phone, location, summary} = formField;
   return (
-    <form>
+    <>
       <h2>Personal Info</h2>
       <FormInput type="text" label="Full Name" name="fullName" value={fullName} onChangeHandler={onChange}/>
       <FormInput type="text" label="Emaile" name="email" value={email} onChangeHandler={onChange}/>
@@ -11,7 +11,7 @@ const PersonalInfoForm = ({formField, onChange}) => {
       <label htmlFor="summary">Summary</label>
       <textarea name="summary" id="summary" onChange={onChange} value={summary}></textarea>
       
-    </form>
+    </>
    
   )
 }

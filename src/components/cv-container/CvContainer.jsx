@@ -139,7 +139,7 @@ const CvContainer = () => {
 
   const addSkillFromChoicesHandler = (skill) => {
     const newSkill = {skill: skill, id: crypto.randomUUID()};
-    setSkills(prev => [...prev, newSkill])
+    setSkills(prev => [newSkill, ...prev])
   }
 
   const updateSkillHandler = (skillId, e) => {
@@ -164,12 +164,14 @@ const CvContainer = () => {
             <Button className={`secondary ${tab.id === activeTab.id ? "active" : ""}`} key={tab.id} onClick={() => activeTabHandler(tab.id)}>{tab.text}</Button>
           ))}
         </div>
-        {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
-        {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
-        {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
-        {activeTab.text === "project" && <ProjectForm projects={projects} addProjectHandler={addProjectHandler} onChange={updateProjectHandler}/>}
-        {activeTab.text === "skills" && <SkillForm skills={skills} skillsChoice={skillsChoice} addSkillFromChoicesHandler={addSkillFromChoicesHandler} addSkillHandler={addSkillHandler} onChange={updateSkillHandler}/>}
-        
+
+        <form onSubmit={e => e.preventDefault()}>
+          {activeTab.text === "personal" && <PersonalInfoForm formField={personalInfo} onChange={updatePersonalInfoHandler}/>}
+          {activeTab.text === "experience" && <ExperienceForm experiences={experiences} addExperienceHandler={addExperienceHandler} onChange={updateExperienceHandler}/>}
+          {activeTab.text === "education" && <EducationForm educations={educations} addEducationHandler={addEducationHandler} onChange={updateEducationHandler}/>}
+          {activeTab.text === "project" && <ProjectForm projects={projects} addProjectHandler={addProjectHandler} onChange={updateProjectHandler}/>}
+          {activeTab.text === "skills" && <SkillForm skills={skills} skillsChoice={skillsChoice} addSkillFromChoicesHandler={addSkillFromChoicesHandler} addSkillHandler={addSkillHandler} onChange={updateSkillHandler}/>}
+        </form>
       </div>
       
       <CvPreview personalInfo={personalInfo} experiences={experiences} educations={educations} projects={projects} skills={skills}/>
