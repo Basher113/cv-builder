@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import "./cv-preview.css";
-import {format} from "date-fns";
+import { formatDate } from "../../utils/date";
 
 const CvPreview = ({personalInfo, experiences, educations, projects, skills}) => {
   const {fullName, email, phone, location, summary} = personalInfo;
@@ -20,8 +20,6 @@ const CvPreview = ({personalInfo, experiences, educations, projects, skills}) =>
       <div className="experiences">
         {experiences.map((experience, index) => {
           const {company, position, startDate, endDate, jobDescription, id} = experience;
-          const formattedStartDate = startDate ? format(new Date(startDate), "MMM dd, yyyy") : "";
-          const formattedEndDate = endDate ? format(new Date(endDate), "MMM dd, yyyy") : "";
 
           return (
           <div key={id}> 
@@ -32,9 +30,9 @@ const CvPreview = ({personalInfo, experiences, educations, projects, skills}) =>
                 <div className="company">{company}</div>
               </div>
               <div className="date-section">
-                <div>{formattedStartDate}</div>
-                {startDate && <span>-</span>}
-                <div>{formattedEndDate}</div>
+                <div>{formatDate(startDate)}</div>
+                {startDate && endDate && <span>-</span>}
+                <div>{formatDate(endDate)}</div>
               </div>
               <div className="job-description">{jobDescription}</div>
             </div>
@@ -46,8 +44,7 @@ const CvPreview = ({personalInfo, experiences, educations, projects, skills}) =>
       <div className="educations">
           {educations.map((education, index)=> {
             const {id, school, degree, startDate, endDate} = education;
-            const formattedStartDate = startDate ? format(new Date(startDate), "MMM dd, yyyy") : "";
-            const formattedEndDate = endDate ? format(new Date(endDate), "MMM dd, yyyy") : "";
+           
 
             return (
             <div key={id}> 
@@ -59,9 +56,9 @@ const CvPreview = ({personalInfo, experiences, educations, projects, skills}) =>
                   <div className="school">{school}</div>
                 </div>
                 <div className="date-section">
-                  <div>{formattedStartDate}</div>
-                  {startDate && <span>-</span>}
-                  <div>{formattedEndDate}</div>
+                  <div>{formatDate(startDate)}</div>
+                  {startDate && endDate && <span>-</span>}
+                  <div>{formatDate(endDate)}</div>
                 </div>
               </div>
             </div>
