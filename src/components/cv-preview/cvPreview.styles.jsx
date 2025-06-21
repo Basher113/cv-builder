@@ -1,4 +1,6 @@
-.cv-paper-container {
+import styled from "styled-components";
+
+export const Wrapper = styled.div`
   padding: 1em;
   box-shadow: var(--shadow);
   min-height: 600px;
@@ -6,41 +8,40 @@
   flex-direction: column;
   gap: 1.5em;
 
-  h3 {
+  & > h3 {
     border-bottom: 1px solid black;
     font-size: 1.2rem;
   }
-}
-
-.full-name {
+`;
+export const FullName = styled.h2`
   text-transform: capitalize;
   font-size: 2rem;
-}
+`;
 
-.contacts {
+export const Contacts = styled.div`
   display: flex;
   gap: 10px;
-}
+`;
 
-.company-position{
+export const CompanyAndPosition = styled.div`
   display: flex;
   font-size: 1.1rem;
-  div {
+  & > div {
     font-weight: 700;
   }
-}
+`;
 
-.project-name {
+export const ProjectName = styled.h4`
   font-weight: 700;
   font-size: 1.1rem;
-}
+`;
 
-.school-degree {
+export const SchoolAndDegree = styled.div`
   display: flex;
-}
+`;
 
-.date-section {
+export const DateSection = styled.div`
   display: flex;
   font-size: 0.9rem;
   font-style: italic;
-}
+`;

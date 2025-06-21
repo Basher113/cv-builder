@@ -1,19 +1,48 @@
-import FormInput from "../form-input/FormInput"
-const PersonalInfoForm = ({formField, onChange}) => {
-  const {fullName, email, phone, location, summary} = formField;
+import FormInput from "../form-input/FormInput";
+import { FormTitle } from "../cv-container/cvContainer.styles";
+const PersonalInfoForm = ({ formField, onChange }) => {
+  const { fullName, email, phone, location, summary } = formField;
   return (
     <>
-      <h2>Personal Info</h2>
-      <FormInput type="text" label="Full Name" name="fullName" value={fullName} onChangeHandler={onChange}/>
-      <FormInput type="text" label="Emaile" name="email" value={email} onChangeHandler={onChange}/>
-      <FormInput type="text" label="Phone" name="phone" value={phone} onChangeHandler={onChange}/>
-      <FormInput type="text" label="location" name="location" value={location} onChangeHandler={onChange}/>
-      <label htmlFor="summary">Summary</label>
-      <textarea name="summary" id="summary" onChange={onChange} value={summary}></textarea>
-      
+      <FormTitle>Personal Info</FormTitle>
+      <FormInput
+        type="text"
+        label="Full Name"
+        name="fullName"
+        value={fullName}
+        onChange={onChange}
+      />
+      <FormInput
+        type="text"
+        label="Email"
+        name="email"
+        value={email}
+        onChange={onChange}
+      />
+      <FormInput
+        type="text"
+        label="Phone"
+        name="phone"
+        value={phone}
+        onChange={onChange}
+      />
+      <FormInput
+        type="text"
+        label="location"
+        name="location"
+        value={location}
+        onChange={onChange}
+      />
+      <FormInput
+        as="textarea"
+        label="Summary"
+        name="summary"
+        id="summary"
+        onChange={onChange}
+        value={summary}
+      ></FormInput>
     </>
-   
-  )
-}
+  );
+};
 
-export default PersonalInfoForm
+export default PersonalInfoForm;

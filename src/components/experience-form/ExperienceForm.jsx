@@ -1,30 +1,70 @@
-import Button from "../button/Button";
-import FormInput from "../form-input/FormInput"
-import "./experience-form.css"
-const ExperienceForm = ({experiences, onChange, addExperienceHandler}) => {
+import { Fragment } from "react";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/Button";
+import { DateGroup } from "./experienceForm.styles";
+import { FormTitle } from "../cv-container/cvContainer.styles";
 
+import FormInput from "../form-input/FormInput";
+const ExperienceForm = ({ experiences, onChange, addExperienceHandler }) => {
   return (
     <>
-      <h2>Experience</h2>
-      {experiences.map(experience => {
-        const {id, company, position, startDate, endDate, jobDescription} = experience;
-        
-        return (
-        <div key={id}>
-          <FormInput type="text" label="Company" name="company" value={company} onChangeHandler={(event) => onChange(id, event)}/>
-          <FormInput type="text" label="Position" name="position" value={position} onChangeHandler={(event) => onChange(id, event)}/>
-          <div className="date-group">
-            <FormInput type="date" label="Start Date" name="startDate" value={startDate} onChangeHandler={(event) => onChange(id, event)}/>
-            <FormInput type="date" label="End Date" name="endDate" value={endDate} onChangeHandler={(event) => onChange(id, event)}/>
-          </div>
-          <label htmlFor="job-description">Job description</label>
-          <textarea name="jobDescription" id="job-description" onChange={(event) => onChange(id, event)} value={jobDescription}></textarea>
-        </div>)
-      })}
-      
-      <Button type="button" onClick={addExperienceHandler} className="primary" >+ Add Experience</Button>
-    </>
-  )
-}
+      <FormTitle>Experience</FormTitle>
+      {experiences.map((experience) => {
+        const { id, company, position, startDate, endDate, jobDescription } =
+          experience;
 
-export default ExperienceForm
+        return (
+          <Fragment key={id}>
+            <FormInput
+              type="text"
+              label="Company"
+              name="company"
+              defaultValue={company}
+              onChange={(event) => onChange(id, event)}
+            />
+            <FormInput
+              type="text"
+              label="Position"
+              name="position"
+              defaultValue={position}
+              onChange={(event) => onChange(id, event)}
+            />
+            <DateGroup className="date-group">
+              <FormInput
+                type="date"
+                label="Start Date"
+                name="startDate"
+                defaultValue={startDate}
+                onChange={(event) => onChange(id, event)}
+              />
+              <FormInput
+                type="date"
+                label="End Date"
+                name="endDate"
+                defaultValue={endDate}
+                onChange={(event) => onChange(id, event)}
+              />
+            </DateGroup>
+
+            <FormInput
+              as="textarea"
+              name="jobDescription"
+              label="Job Description"
+              onChange={(event) => onChange(id, event)}
+              defaultValue={jobDescription}
+            ></FormInput>
+          </Fragment>
+        );
+      })}
+
+      <Button
+        type="button"
+        onClick={addExperienceHandler}
+        buttonType={BUTTON_TYPE_CLASSES.primary}
+      >
+        + Add Experience
+      </Button>
+    </>
+  );
+};
+
+export default ExperienceForm;

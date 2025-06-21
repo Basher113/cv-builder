@@ -1,12 +1,12 @@
-import "./header.css";
+import { Wrapper } from "./header.styles";
 
 const Header = () => {
   return (
-    <header>
+    <Wrapper>
       <h1>Simple Resume Builder</h1>
       <p>Build your professional resume in minutes!</p>
-    </header>
-  )
-}
+    </Wrapper>
+  );
+};
 
-export default Header
+export default Header;

@@ -1,12 +1,11 @@
-import "./form-input.css"
-const FormInput = ({label, type, name, value, onChangeHandler}) => {
-  
+import { Wrapper, StyledLabel, StyledInput } from "./formInput.styles.jsx";
+const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div className="group">
-      <label>{label}</label>
-      <input type={type} name={name} value={value} onChange={onChangeHandler} />
-    </div>
-  )
-}
+    <Wrapper>
+      <StyledLabel>{label}</StyledLabel>
+      <StyledInput {...otherProps} />
+    </Wrapper>
+  );
+};
 
-export default FormInput
+export default FormInput;
